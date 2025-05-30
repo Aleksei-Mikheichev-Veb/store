@@ -1,0 +1,25 @@
+const express = require('express');
+const cors = require('cors');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+
+const app = express();
+const PORT = 5000;
+
+app.use(cors());
+
+app.get('/api', async (req, res) => {
+    try {
+        console.log('Запрос отправлен к внешнему API');
+        const response = await fetch('http://maxifoxy-testfront-12dc.twc1.net/');
+        console.log('Ответ получен:', response);
+        const data = await response.json();
+        res.json(data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Error fetching data' });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Proxy server is running on http://localhost:${PORT}`);
+});

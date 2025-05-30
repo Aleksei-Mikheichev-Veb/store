@@ -1,0 +1,41 @@
+@import '../../styles/mixins';
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 70px 20px 20px;
+  background-color: lighten(#dc3545, 45%);
+  border: 1px solid lighten(#dc3545, 30%);
+  border-radius: 8px;
+  margin: 24px 0;
+
+  &__icon {
+    font-size: 48px;
+    margin-bottom: 18px;
+  }
+
+  &__title {
+    color: #dc3545;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  &__text {
+    color: darken(#dc3545, 10%);
+    margin-bottom: 18px;
+    max-width: 400px;
+  }
+
+  &__retry {
+    @include button-primary;
+    background-color: #dc3545;
+    border-color: #dc3545;
+
+    &:hover {
+      background-color: darken(#dc3545, 10%);
+      border-color: darken(#dc3545, 10%);
+    }
+  }
+}
